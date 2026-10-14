@@ -29,7 +29,7 @@ Look for `Hash of data verified.`
 1. After flashing the clock restarts, lights up in colours (setup mode) and opens the hotspot `awtrixng-xxxxxx` (no password; the suffix is the end of the MAC address).
 2. Join it and open `http://192.168.4.1`. Under **Wi-Fi** press **Scan**, pick your network, enter the password (optionally a hostname).
 3. Press **Save**, then **Reboot** under **Maintenance**.
-4. After the start animation the display shows its IP for a few seconds only. Missed it: replug, open `http://<hostname>.local` (default `awtrixng-xxxxxx.local`; Linux needs avahi-daemon) or check the router. `AP MODE` on the display means joining failed (wrong password, 5 GHz only).
+4. After the start animation the display shows its IP for a few seconds only. Missed it: replug, open `http://<hostname>.local` (default `awtrixng-xxxxxx.local`; Linux needs avahi-daemon) or check the router. The router usually hands out the same IP as before (same MAC). `AP MODE` on the display means joining failed (wrong password, 5 GHz only).
 5. Enter the MQTT broker for Home Assistant discovery. Scripts, icons, automations: <https://awtrix.de>
 
 ## Notes

@@ -16,7 +16,7 @@ esptool.py --port /dev/ttyUSB0 --baud 921600 write_flash 0x0 tc001-original.bin
 
 - Linux: add yourself to the `dialout` group for serial access (`sudo usermod -aG dialout $USER`, then log in again).
 - Do not use the Debian/Ubuntu/Mint `esptool` apt package: it lacks the stub flasher and `flash_id` fails with `FileNotFoundError ... stub_flasher_32.json` (seen with 4.7.0). Workaround for the apt version: add `--no-stub` (much slower).
-- The buzzer whines while the chip sits in download mode (GPIO15 floating). Harmless; press reset or replug afterwards.
+- The buzzer whines while the chip sits in download mode (GPIO15 floating). Harmless; replugging does not help because of the battery. Press the reset hole on the back with a paperclip, or run any successful esptool command (e.g. `chip_id`), which hard-resets the chip at the end.
 - No `/dev/ttyUSB0` on Ubuntu/Mint? The `brltty` package often grabs the CH340 chip: `sudo apt remove brltty`, then replug.
 - The backup contains your stored Wi-Fi password. Keep it private.
 - Windows: use `COM3` (or similar) instead of `/dev/ttyUSB0`; a CH340 driver may be needed.

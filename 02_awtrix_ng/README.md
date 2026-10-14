@@ -50,4 +50,7 @@ curl -X POST http://clock.local/api/v1/notifications -H 'Content-Type: applicati
 # app that stays in the rotation until the next restart
 curl -X PUT http://clock.local/api/v1/apps/pushed/scrolltext -H 'Content-Type: application/json' \
   -d '{"text":"Hello from fambach.net","textColor":"#00AAFF"}'
+# per-text speed (percent of 21 px/s, sharp up to ~200) and mode (wrap, loop, bounce, static)
+curl -X PUT http://clock.local/api/v1/apps/pushed/scrolltext -H 'Content-Type: application/json' \
+  -d '{"text":"Hello from fambach.net","scroll":{"mode":"loop","speed":50}}'
 ```

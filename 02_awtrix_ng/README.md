@@ -7,7 +7,7 @@ License: PolyForm Noncommercial 1.0.0 (AWTRIX 3: CC BY-NC-SA 4.0).
 ## Option 1: flash from the browser
 
 1. Back up the original firmware first ([00](../00_backup_original_firmware/)).
-2. Use a browser with Web Serial (Chrome, Chromium, Edge; reported to work in a current Firefox too). Connect the clock with a USB data cable.
+2. Use a browser with Web Serial (Chrome, Chromium, Edge; worked in Firefox on Linux too). Connect the clock with a USB data cable.
 3. Open <https://blueforcer.github.io/awtrix-ng/esp32/getting-started/flashing/>, press **Fresh install**, pick `/dev/ttyUSB0` and wait for **Done**.
    *Fresh install* clears settings and Wi-Fi; *Update AWTRIX NG* keeps them.
 
@@ -26,11 +26,13 @@ Look for `Hash of data verified.`
 
 ## First boot
 
-1. The clock opens the hotspot `awtrixng-xxxxxx` (no password).
-2. Join it; the setup page opens at `192.168.4.1`. Enter Wi-Fi (optionally a hostname), press **Save**, then **Reboot now**.
-3. At start-up the display shows its IP address; open it in the browser (or `http://<hostname>.local`).
-4. Enter the MQTT broker for Home Assistant discovery. Scripts, icons, automations: <https://awtrix.de>
+1. After flashing the clock restarts, lights up in colours (setup mode) and opens the hotspot `awtrixng-xxxxxx` (no password; the suffix is the end of the MAC address).
+2. Join it and open `http://192.168.4.1`. Under **Wi-Fi** press **Scan**, pick your network, enter the password (optionally a hostname).
+3. Press **Save**, then **Reboot** under **Maintenance**.
+4. At start-up the display shows its IP address; open it in the browser (or `http://<hostname>.local`).
+5. Enter the MQTT broker for Home Assistant discovery. Scripts, icons, automations: <https://awtrix.de>
 
 ## Notes
 
-- Status: not tested yet
+- Status: flashed with the web flasher (Firefox, Linux), Wi-Fi setup works. MQTT / Home Assistant not tested yet.
+- The buzzer whines while the clock is in download mode (GPIO15 floats); it stops after the restart.

@@ -3,8 +3,7 @@
 Do this before flashing anything else. Without a backup the only way back is Ulanzi's update package.
 
 ```sh
-sudo apt install esptool    # Debian/Ubuntu/Mint (command may be `esptool` instead of `esptool.py`)
-# or: pipx install esptool   # newest version
+sudo apt install pipx && pipx install esptool && pipx ensurepath   # then open a new terminal
 esptool.py --port /dev/ttyUSB0 flash_id          # should report 8 MB
 esptool.py --port /dev/ttyUSB0 --baud 921600 read_flash 0x0 0x800000 tc001-original.bin
 ```
@@ -16,6 +15,8 @@ esptool.py --port /dev/ttyUSB0 --baud 921600 write_flash 0x0 tc001-original.bin
 ```
 
 - Linux: add yourself to the `dialout` group for serial access (`sudo usermod -aG dialout $USER`, then log in again).
+- Do not use the Debian/Ubuntu/Mint `esptool` apt package: it lacks the stub flasher and `flash_id` fails with `FileNotFoundError ... stub_flasher_32.json` (seen with 4.7.0). Workaround for the apt version: add `--no-stub` (much slower).
+- The buzzer whines while the chip sits in download mode (GPIO15 floating). Harmless; press reset or replug afterwards.
 - No `/dev/ttyUSB0` on Ubuntu/Mint? The `brltty` package often grabs the CH340 chip: `sudo apt remove brltty`, then replug.
 - The backup contains your stored Wi-Fi password. Keep it private.
 - Windows: use `COM3` (or similar) instead of `/dev/ttyUSB0`; a CH340 driver may be needed.

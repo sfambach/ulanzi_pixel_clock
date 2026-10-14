@@ -4,18 +4,20 @@
 No cloud, HTTP and MQTT API, Home Assistant MQTT discovery, Berry scripts running on the clock.
 License: PolyForm Noncommercial 1.0.0 (AWTRIX 3: CC BY-NC-SA 4.0).
 
-## Flash from the browser
+## Option 1: flash from the browser
 
 1. Back up the original firmware first ([00](../00_backup_original_firmware/)).
-2. Use Chrome, Chromium or Edge (Firefox has no Web Serial). Connect the clock with a USB data cable.
+2. Use a browser with Web Serial (Chrome, Chromium, Edge; reported to work in a current Firefox too). Connect the clock with a USB data cable.
 3. Open <https://blueforcer.github.io/awtrix-ng/esp32/getting-started/flashing/>, press **Fresh install**, pick `/dev/ttyUSB0` and wait for **Done**.
    *Fresh install* clears settings and Wi-Fi; *Update AWTRIX NG* keeps them.
 
-## Flash with esptool (fallback)
+## Option 2: download the image and flash with esptool
 
-Download `usb-awtrix-ng.zip` from the releases and use `usb-awtrix-ng-4mb.bin`:
+Download `usb-awtrix-ng.zip` from the releases and use `usb-awtrix-ng-4mb.bin` (complete image, written at 0x0):
 
 ```sh
+wget https://github.com/Blueforcer/awtrix-ng/releases/latest/download/usb-awtrix-ng.zip
+unzip usb-awtrix-ng.zip usb-awtrix-ng-4mb.bin
 esptool --chip esp32 --port /dev/ttyUSB0 --baud 460800 write-flash 0x0 usb-awtrix-ng-4mb.bin
 ```
 

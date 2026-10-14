@@ -36,3 +36,18 @@ Look for `Hash of data verified.`
 
 - Status: flashed with the web flasher (Firefox, Linux), Wi-Fi setup works. MQTT / Home Assistant not tested yet.
 - The buzzer whines while the clock is in download mode (GPIO15 floats); it stops after the restart.
+- Tested version 1.2.2. Default rotation: time (calendar icon, weekday bar), date, temperature, humidity, battery.
+- The internal temperature reads high (32 °C here, sensor inside the case); correct it with `tempOffset`.
+
+## Scrolling text
+
+No text field in the web UI; use the HTTP API. Text that does not fit scrolls by itself.
+
+```sh
+# one-off notification, scrolled twice
+curl -X POST http://clock.local/api/v1/notifications -H 'Content-Type: application/json' \
+  -d '{"text":"Hello from fambach.net","repeat":2}'
+# app that stays in the rotation until the next restart
+curl -X PUT http://clock.local/api/v1/apps/pushed/scrolltext -H 'Content-Type: application/json' \
+  -d '{"text":"Hello from fambach.net","textColor":"#00AAFF"}'
+```

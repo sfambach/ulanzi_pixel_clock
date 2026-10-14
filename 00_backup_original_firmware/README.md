@@ -4,14 +4,14 @@ Do this before flashing anything else. Without a backup the only way back is Ula
 
 ```sh
 sudo apt install pipx && pipx install esptool && pipx ensurepath   # then open a new terminal
-esptool.py --port /dev/ttyUSB0 flash_id          # should report 8 MB
-esptool.py --port /dev/ttyUSB0 --baud 921600 read_flash 0x0 0x800000 tc001-original.bin
+esptool --port /dev/ttyUSB0 flash-id          # 4 MB or 8 MB depending on the unit
+esptool --port /dev/ttyUSB0 --baud 921600 read-flash 0 ALL tc001-original.bin
 ```
 
 Restore:
 
 ```sh
-esptool.py --port /dev/ttyUSB0 --baud 921600 write_flash 0x0 tc001-original.bin
+esptool --port /dev/ttyUSB0 --baud 921600 write-flash 0x0 tc001-original.bin
 ```
 
 - Linux: add yourself to the `dialout` group for serial access (`sudo usermod -aG dialout $USER`, then log in again).
@@ -37,7 +37,7 @@ The file is an application image only (no bootloader, no partition table). Flash
 application offset should work while the bootloader and partition table are still the original ones:
 
 ```sh
-esptool.py --port /dev/ttyUSB0 --baud 921600 write_flash 0x10000 UCLOCK_0107013834aa_1.7.1.bin
+esptool --port /dev/ttyUSB0 --baud 921600 write-flash 0x10000 UCLOCK_0107013834aa_1.7.1.bin
 ```
 
 Not tested yet. After another firmware has replaced the partition table, a full own backup

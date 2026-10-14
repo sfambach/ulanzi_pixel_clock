@@ -13,7 +13,7 @@ One folder per test on the Ulanzi TC001 Smart Pixel Clock (ESP32, 8 × 32 RGB LE
 
 | Part | Details |
 |---|---|
-| MCU | ESP32-WROOM-32D, 8 MB flash, CH340 USB-serial on USB-C |
+| MCU | ESP32-WROOM-32D, 4 or 8 MB flash (depends on the unit), CH340 USB-serial on USB-C |
 | Matrix | 256 × WS2812B-Mini, 32 × 8, data on GPIO32, serpentine rows |
 | Buttons | left GPIO26, middle GPIO27, right GPIO14 (active low, pull-up) |
 | Buzzer | GPIO15 (keep INPUT_PULLDOWN when idle, else it whines) |

@@ -16,6 +16,8 @@ esptool.py --port /dev/ttyUSB0 --baud 921600 write_flash 0x0 tc001-original.bin
 ```
 
 - Linux: add yourself to the `dialout` group for serial access (`sudo usermod -aG dialout $USER`, then log in again).
+- No `/dev/ttyUSB0` on Ubuntu/Mint? The `brltty` package often grabs the CH340 chip: `sudo apt remove brltty`, then replug.
+- The backup contains your stored Wi-Fi password. Keep it private.
 - Windows: use `COM3` (or similar) instead of `/dev/ttyUSB0`; a CH340 driver may be needed.
 - `*.bin` is ignored by git on purpose: the factory firmware is not ours to publish.
 

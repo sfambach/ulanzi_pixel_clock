@@ -54,3 +54,24 @@ curl -X PUT http://clock.local/api/v1/apps/pushed/scrolltext -H 'Content-Type: a
 curl -X PUT http://clock.local/api/v1/apps/pushed/scrolltext -H 'Content-Type: application/json' \
   -d '{"text":"Hello from fambach.net","scroll":{"mode":"loop","speed":50}}'
 ```
+
+## Home Assistant notifications
+
+Needs Home Assistant 2024.11+ and an MQTT broker. Web UI → **System** → **MQTT**: enable MQTT, set broker, enable **HA discovery**, save, reboot.
+There is no notify entity; publish to `<prefix>/cmd/notify` (default prefix `awtrixNG`) with the same JSON as the HTTP API:
+
+```yaml
+automation:
+  - alias: Mail in the letterbox
+    triggers:
+      - trigger: state
+        entity_id: binary_sensor.letterbox
+        to: "on"
+    actions:
+      - action: mqtt.publish
+        data:
+          topic: "awtrixNG/cmd/notify"
+          payload: '{"text":"Mail!","hold":true,"sound":{"rtttl":"bell:d=4,o=5,b=100:e,c"}}'
+```
+
+`"hold":true` keeps it until the middle button is pressed. Not tested yet.

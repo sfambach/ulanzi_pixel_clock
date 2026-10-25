@@ -35,6 +35,11 @@ Third-party firmware and libraries keep their own licenses.
 
 Trademarks: Ulanzi is a trademark of Shenzhen Ulanzi Technology Co., Ltd.; ESP32 is a trademark of Espressif Systems.
 
+## Authors
+
+- **Stefan Fambach** (SteFam) – idea and concept, review and testing – https://www.fambach.net
+- **Claude** (Anthropic AI) – implementation, via Claude Code
+
 ## AI disclosure
 
-Parts of this repository (code and documentation) were created with the help of an AI assistant (Claude by Anthropic) and reviewed by the author.
+This project is built with AI assistance. Stefan Fambach had the idea, wrote the concept and reviews and tests every change; the implementation (code and documentation) is written largely by Claude (Anthropic) via Claude Code.
